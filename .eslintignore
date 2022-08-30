@@ -12,7 +12,11 @@ packages/eslint-plugin-tslint/tests
 
 packages/website/**/*.js
 packages/website/**/*.d.ts
+
 packages/website-eslint/rollup.config.js
+# these files are taken directly from the source, so we don't want to lint them
+packages/website-eslint/src/mock/assert.js
+packages/website-eslint/src/mock/path.js
 
 # Files copied as part of the build
 packages/types/src/generated/**/*.ts
