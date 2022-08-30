@@ -1,3 +1,6 @@
+// @ts-check
+
+/** @type {import('@typescript-eslint/utils').TSESLint.Linter.ConfigOverride} */
 module.exports = {
   root: true,
   plugins: [
@@ -16,7 +19,6 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
-    'plugin:eslint-plugin/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
   ],
@@ -179,6 +181,13 @@ module.exports = {
     'import/prefer-default-export': 'off', // we want everything to be named
   },
   overrides: [
+    // all js files
+    {
+      files: ['*.js'],
+      rules: {
+        '@typescript-eslint/explicit-function-return-type': 'off',
+      },
+    },
     // all test files
     {
       files: [
@@ -235,6 +244,7 @@ module.exports = {
         'packages/eslint-plugin-tslint/**/*.ts',
         'packages/eslint-plugin/**/*.ts',
       ],
+      extends: ['plugin:eslint-plugin/recommended'],
       rules: {
         '@typescript-eslint/internal/no-typescript-estree-import': 'error',
       },

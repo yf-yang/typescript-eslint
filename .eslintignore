@@ -12,8 +12,7 @@ packages/eslint-plugin-tslint/tests
 
 packages/website/**/*.js
 packages/website/**/*.d.ts
-packages/website-eslint/**/*.js
-packages/website-eslint/**/*.d.ts
+packages/website-eslint/rollup.config.js
 
 # Files copied as part of the build
 packages/types/src/generated/**/*.ts

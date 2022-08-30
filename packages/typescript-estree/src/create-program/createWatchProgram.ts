@@ -1,6 +1,6 @@
 import debug from 'debug';
 import fs from 'fs';
-import semver from 'semver';
+import * as semver from 'semver';
 import * as ts from 'typescript';
 import { Extra } from '../parser-options';
 import { WatchCompilerHostOfConfigFile } from './WatchCompilerHostOfConfigFile';

@@ -1,5 +1,6 @@
 import 'vs/language/typescript/tsWorker';
 import { Linter } from 'eslint';
+// intentional deep import to reduce bundle size
 import rules from '@typescript-eslint/eslint-plugin/dist/rules';
 
 export function createLinter() {
@@ -10,6 +11,7 @@ export function createLinter() {
   return linter;
 }
 
+// intentional deep imports to reduce bundle size
 export { analyze } from '@typescript-eslint/scope-manager/dist/analyze';
 export { visitorKeys } from '@typescript-eslint/visitor-keys/dist/visitor-keys';
 export { astConverter } from '@typescript-eslint/typescript-estree/dist/ast-converter';

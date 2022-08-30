@@ -1,7 +1,7 @@
 import debug from 'debug';
 import { sync as globSync } from 'globby';
 import isGlob from 'is-glob';
-import semver from 'semver';
+import * as semver from 'semver';
 import { normalize } from 'path';
 import * as ts from 'typescript';
 import { astConverter } from './ast-converter';

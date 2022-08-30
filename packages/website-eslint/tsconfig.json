@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "module": "CommonJS",
+    "composite": false,
+    "rootDir": ".",
+    "outDir": "dist",
+    "noEmit": true
+  },
+  "include": [
+    "./rollupConfig.ts",
+    "./rollup-plugin/*.ts",
+    "./src/**/*.ts",
+    "./src/**/*.js",
+    "./types/*.ts"
+  ]
+}
