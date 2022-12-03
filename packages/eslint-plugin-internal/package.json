@@ -18,5 +18,9 @@
     "@typescript-eslint/type-utils": "5.45.0",
     "@typescript-eslint/utils": "5.45.0",
     "prettier": "*"
+  },
+  "devDependencies": {
+    "jest": "*",
+    "rimraf": "*"
   }
 }

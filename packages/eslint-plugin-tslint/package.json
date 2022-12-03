@@ -48,6 +48,9 @@
   },
   "devDependencies": {
     "@types/lodash": "*",
-    "@typescript-eslint/parser": "5.45.0"
+    "@typescript-eslint/parser": "5.45.0",
+    "jest": "*",
+    "prettier": "*",
+    "rimraf": "*"
   }
 }

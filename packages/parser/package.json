@@ -52,7 +52,11 @@
   },
   "devDependencies": {
     "@types/glob": "*",
+    "downlevel-dts": "*",
     "glob": "*",
+    "jest": "*",
+    "prettier": "*",
+    "rimraf": "*",
     "typescript": "*"
   },
   "peerDependenciesMeta": {

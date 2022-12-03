@@ -27,6 +27,13 @@
     },
     "test": {
       "outputs": ["{projectRoot}/coverage"]
+    },
+    "lint": {
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.js",
+        "{workspaceRoot}/.eslintignore"
+      ]
     }
   },
   "namedInputs": {

@@ -43,7 +43,12 @@
     "eslint-visitor-keys": "^3.3.0"
   },
   "devDependencies": {
-    "@types/eslint-visitor-keys": "*"
+    "@types/eslint-visitor-keys": "*",
+    "downlevel-dts": "*",
+    "jest": "*",
+    "prettier": "*",
+    "rimraf": "*",
+    "typescript": "*"
   },
   "funding": {
     "type": "opencollective",

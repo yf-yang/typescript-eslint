@@ -1,9 +1,9 @@
 import * as execa from 'execa';
 
 /**
- * In certain circumstances we want to skip the below the steps and it may not always
- * be possible to use --ignore-scripts (e.g. if another tool is what is invoking the
- * install command, such as when nx migrate runs). We therefore use and env var for this.
+ * In certain circumstances we might want to skip the below the steps when another
+ * tool is invoking the install command (such as when nx migrate runs).
+ * We therefore use an env var for this.
  */
 
 if (process.env.SKIP_POSTINSTALL) {

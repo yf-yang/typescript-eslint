@@ -75,9 +75,10 @@ export function integrationTest(testFilename: string, filesGlob: string): void {
         // we use the non-promise version so we can log everything on error
         childProcess.execFile(
           // we use yarn instead of npm as it will cache the remote packages and
-          // to make installs things faster
+          // make installing things faster
           'yarn',
-          ['install', '--no-lockfile', '--prefer-offline', '--no-progress'],
+          // We call explicitly with --no-immutable to prevent errors related to missing lock files in CI
+          ['install', '--no-immutable'],
           {
             cwd: testFolder,
           },

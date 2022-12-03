@@ -44,6 +44,9 @@
     "eslint": "^6.0.0 || ^7.0.0 || ^8.0.0"
   },
   "devDependencies": {
+    "downlevel-dts": "*",
+    "prettier": "*",
+    "rimraf": "*",
     "typescript": "*"
   },
   "funding": {

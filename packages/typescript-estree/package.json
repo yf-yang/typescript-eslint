@@ -60,9 +60,13 @@
     "@types/semver": "*",
     "@types/tmp": "*",
     "@typescript-eslint/shared-fixtures": "5.45.0",
+    "downlevel-dts": "*",
     "glob": "*",
+    "jest": "*",
     "jest-specific-snapshot": "*",
     "make-dir": "*",
+    "prettier": "*",
+    "rimraf": "*",
     "tmp": "*",
     "typescript": "*"
   },

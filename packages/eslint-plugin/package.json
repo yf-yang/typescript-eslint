@@ -37,8 +37,8 @@
     "clean": "tsc -b tsconfig.build.json --clean",
     "postclean": "rimraf dist && rimraf coverage",
     "format": "prettier --write \"./**/*.{ts,mts,cts,tsx,js,mjs,cjs,jsx,json,md,css}\" --ignore-path ../../.prettierignore",
-    "generate:breaking-changes": "../../node_modules/.bin/ts-node tools/generate-breaking-changes.ts",
-    "generate:configs": "../../node_modules/.bin/ts-node tools/generate-configs.ts",
+    "generate:breaking-changes": "ts-node tools/generate-breaking-changes.ts",
+    "generate:configs": "ts-node tools/generate-configs.ts",
     "lint": "nx lint",
     "test": "jest --coverage",
     "typecheck": "tsc -p tsconfig.json --noEmit"
@@ -62,11 +62,14 @@
     "@types/prettier": "*",
     "chalk": "^5.0.1",
     "cross-fetch": "^3.1.5",
+    "jest": "*",
     "json-schema": "*",
     "markdown-table": "^3.0.2",
     "marked": "^4.0.15",
     "prettier": "*",
+    "rimraf": "*",
     "title-case": "^3.0.3",
+    "ts-node": "*",
     "typescript": "*"
   },
   "peerDependencies": {

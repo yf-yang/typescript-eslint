@@ -46,6 +46,10 @@
   },
   "devDependencies": {
     "@typescript-eslint/parser": "5.45.0",
+    "downlevel-dts": "*",
+    "jest": "*",
+    "prettier": "*",
+    "rimraf": "*",
     "typescript": "*"
   },
   "peerDependencies": {

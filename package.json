@@ -130,5 +130,6 @@
     "@swc/core-linux-arm64-musl": "npm:dummypkg-a@1.0.0",
     "@swc/core-win32-arm64-msvc": "npm:dummypkg-a@1.0.0",
     "@swc/core-win32-ia32-msvc": "npm:dummypkg-a@1.0.0"
-  }
+  },
+  "packageManager": "yarn@3.3.0"
 }

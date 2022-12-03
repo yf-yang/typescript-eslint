@@ -30,6 +30,7 @@
     "@typescript-eslint/typescript-estree": "5.45.0",
     "@typescript-eslint/visitor-keys": "5.45.0",
     "eslint": "*",
+    "prettier": "*",
     "rollup": "^2.75.4",
     "rollup-plugin-terser": "^7.0.2",
     "semver": "^7.3.7"
