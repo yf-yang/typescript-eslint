@@ -72,6 +72,9 @@ jobs:
             rm migrations.json
           fi
 
+          # Run the special nx repair command to ensure config matches latest and greatest
+          npx nx repair
+
           # Ensure all the changed files are formatted appropriately
           yarn format
 
