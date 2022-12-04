@@ -54,6 +54,9 @@ runs:
       shell: bash
       run: |
         yarn install --immutable --inline-builds
+        # Ensure dependencies have already been adequately deduplicated in the lock file...
+        yarn dedupe
+        # ...if they haven't been this next command will exit
         yarn check-clean-workspace-after-install
         yarn patch-package
       env:
