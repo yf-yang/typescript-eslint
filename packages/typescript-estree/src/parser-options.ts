@@ -3,9 +3,9 @@ import type * as ts from 'typescript';
 
 import type { TSESTree, TSESTreeToTSNode, TSNode, TSToken } from './ts-estree';
 
-////////////////////////////////////////////////////
-// MAKE SURE THIS IS KEPT IN SYNC WITH THE README //
-////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+// MAKE SURE THIS IS KEPT IN SYNC WITH THE WEBSITE DOCS //
+//////////////////////////////////////////////////////////
 
 interface ParseOptions {
   /**
@@ -91,6 +91,13 @@ interface ParseAndGenerateServicesOptions extends ParseOptions {
    * See: https://github.com/typescript-eslint/typescript-eslint/issues/2094
    */
   EXPERIMENTAL_useSourceOfProjectReferenceRedirect?: boolean;
+
+  /**
+   * ***EXPERIMENTAL FLAG*** - Use this at your own risk.
+   *
+   * Manage type-aware parsing using a `ts.LanguageService` instead of a `ts.BuilderProgram`.
+   */
+  EXPERIMENTAL_useLanguageService?: boolean;
 
   /**
    * When `project` is provided, this controls the non-standard file extensions which will be parsed.

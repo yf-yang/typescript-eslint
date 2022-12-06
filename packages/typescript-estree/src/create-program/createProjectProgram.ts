@@ -4,8 +4,7 @@ import * as ts from 'typescript';
 
 import { firstDefined } from '../node-utils';
 import type { ParseSettings } from '../parseSettings';
-import { getProgramsForProjects } from './createWatchProgram';
-import type { ASTAndProgram } from './shared';
+import type { ASTAndProgram, CanonicalPath } from './shared';
 import { getAstFromProgram } from './shared';
 
 const log = debug('typescript-eslint:typescript-estree:createProjectProgram');
@@ -27,10 +26,10 @@ const DEFAULT_EXTRA_FILE_EXTENSIONS = [
  */
 function createProjectProgram(
   parseSettings: ParseSettings,
+  programsForProjects: readonly ts.Program[],
 ): ASTAndProgram | undefined {
   log('Creating project program for: %s', parseSettings.filePath);
 
-  const programsForProjects = getProgramsForProjects(parseSettings);
   const astAndProgram = firstDefined(programsForProjects, currentProgram =>
     getAstFromProgram(currentProgram, parseSettings),
   );
@@ -40,7 +39,7 @@ function createProjectProgram(
     return astAndProgram;
   }
 
-  const describeFilePath = (filePath: string): string => {
+  const describeFilePath = (filePath: CanonicalPath): string => {
     const relative = path.relative(
       parseSettings.tsconfigRootDir || process.cwd(),
       filePath,
@@ -105,7 +104,7 @@ function createProjectProgram(
       `- Change ESLint's list of included files to not include this file`,
       `- Change ${describedSpecifiers} to include this file`,
       `- Create a new TSConfig that includes this file and include it in your parserOptions.project`,
-      `See the TypeScript ESLint docs for more info: https://typescript-eslint.io/docs/linting/troubleshooting##i-get-errors-telling-me-eslint-was-configured-to-run--however-that-tsconfig-does-not--none-of-those-tsconfigs-include-this-file`,
+      `See the TypeScript ESLint docs for more info: https://typescript-eslint.io/linting/troubleshooting##i-get-errors-telling-me-eslint-was-configured-to-run--however-that-tsconfig-does-not--none-of-those-tsconfigs-include-this-file`,
     );
   }
 
