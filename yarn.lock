@@ -19187,6 +19187,7 @@ __metadata:
     react-dom: ^18.1.0
     react-split-pane: ^0.1.92
     remark-docusaurus-tabs: ^0.2.0
+    ts-node: "*"
     typescript: "*"
     webpack: ^5.74.0
   languageName: unknown

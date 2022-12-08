@@ -55,6 +55,7 @@
     "eslint-plugin-react-hooks": "^4.5.0",
     "globby": "^11.1.0",
     "monaco-editor": "^0.33.0",
+    "ts-node": "*",
     "webpack": "^5.74.0"
   },
   "browserslist": {
