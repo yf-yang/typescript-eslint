@@ -71,6 +71,12 @@ export function integrationTest(testFilename: string, filesGlob: string): void {
       );
       // console.log('package.json written.');
 
+      // Ensure yarn uses the node-modules linker and not PnP
+      await writeFile(
+        path.join(testFolder, '.yarnrc.yml'),
+        `nodeLinker: node-modules`,
+      );
+
       await new Promise<void>((resolve, reject) => {
         // we use the non-promise version so we can log everything on error
         childProcess.execFile(
