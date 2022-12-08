@@ -7,16 +7,10 @@
  * against the exact same version of the package.
  */
 
-import { spawnSync } from 'child_process';
-import fs from 'fs';
-import path from 'path';
-import tmp from 'tmp';
-
-interface PackageJSON {
-  name: string;
-  private?: boolean;
-  devDependencies: Record<string, string>;
-}
+const { spawnSync } = require('child_process');
+const fs = require('fs');
+const path = require('path');
+const tmp = require('tmp');
 
 const PACKAGES_DIR = path.resolve(__dirname, '..', '..', 'packages');
 const PACKAGES = fs.readdirSync(PACKAGES_DIR);
@@ -27,13 +21,11 @@ const tarFolder = tmp.dirSync({
   keep: true,
 }).name;
 
-const tseslintPackages: PackageJSON['devDependencies'] = {};
+const tseslintPackages = {};
 for (const pkg of PACKAGES) {
   const packageDir = path.join(PACKAGES_DIR, pkg);
-  const packageJson: PackageJSON = require(path.join(
-    packageDir,
-    'package.json',
-  ));
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const packageJson = require(path.join(packageDir, 'package.json'));
   if (packageJson.private === true) {
     continue;
   }
@@ -48,5 +40,6 @@ for (const pkg of PACKAGES) {
   tseslintPackages[packageJson.name] = `file:${path.join(tarFolder, tarball)}`;
 }
 
+// eslint-disable-next-line no-console
 console.log('Finished packing local packages.');
-export { tseslintPackages };
+module.exports = { tseslintPackages };
