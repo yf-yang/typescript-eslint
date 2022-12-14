@@ -1,25 +1,63 @@
-name: 'Lock threads'
+name: Website Tests
 
 on:
-  schedule:
-    - cron: '0 0 * * *'
+  workflow_dispatch:
+    inputs:
+      url:
+        description: URL to test
+        required: true
+      commit:
+        description: Commit SHA being tested
+        required: false
 
-permissions: {}
+env:
+  PRIMARY_NODE_VERSION: 18
 
 jobs:
-  lock:
-    permissions:
-      issues: write # to lock issues (dessant/lock-threads)
-      pull-requests: write # to lock PRs (dessant/lock-threads)
-
+  test:
+    name: Website Tests
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
-      - uses: dessant/lock-threads@v4
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
-          github-token: ${{ github.token }}
-          issue-inactive-days: '7'
-          issue-lock-reason: 'resolved'
-          issue-comment: ''
-          pr-inactive-days: '7'
-          pr-lock-reason: 'resolved'
-          pr-comment: ''
+          fetch-depth: 2
+
+      - run: echo ${{ github.event.inputs.commit }}
+
+      - uses: LouisBrunner/checks-action@v1.5.0
+        id: check
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          sha: ${{ github.event.inputs.commit }}
+          name: Website Tests
+          status: in_progress
+
+      - name: Install
+        uses: ./.github/actions/prepare-install
+        with:
+          node-version: ${{ env.PRIMARY_NODE_VERSION }}
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright tests against the Netlify deployment
+        run: yarn playwright test --reporter=list
+        working-directory: packages/website
+        env:
+          PLAYWRIGHT_TEST_BASE_URL: ${{ github.event.inputs.url }}
+
+      - uses: LouisBrunner/checks-action@v1.5.0
+        if: always()
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          sha: ${{ github.event.inputs.commit }}
+          check_id: ${{ steps.check.outputs.check_id }}
+          conclusion: ${{ job.status }}
+
+      - if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-report
+          path: packages/website/playwright-report

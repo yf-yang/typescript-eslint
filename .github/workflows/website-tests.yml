@@ -1,0 +1,39 @@
+name: Website Tests
+
+on:
+  deployment_status:
+
+jobs:
+  test:
+    permissions:
+      contents: read # to fetch code (actions/checkout)
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    if: github.event.deployment_status.state == 'success'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - name: Install
+        uses: ./.github/actions/prepare-install
+        with:
+          node-version: ${{ env.PRIMARY_NODE_VERSION }}
+
+      - name: Build
+        uses: ./.github/actions/prepare-build
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright tests against the Netlify deployment
+        run: yarn playwright test --reporter=list
+        env:
+          PLAYWRIGHT_TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
+
+      - if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-report
+          path: packages/website/playwright-report
